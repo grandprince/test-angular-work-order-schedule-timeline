@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="8px" height="5px" viewBox="0 0 8 5" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Triangle</title>
+    <g id="Work-Order-Schedule" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.5">
+        <g id="Work-Order-Schedule---Create-New-Event---Status-Dropdown" transform="translate(-1395, -234)" fill="#687196">
+            <g id="Group" transform="translate(1395.36, 234)">
+                <path d="M4.3904344,0.488043006 L7.35012198,4.18765248 C7.52262675,4.40328344 7.48766607,4.71792963 7.2720351,4.8904344 C7.18337858,4.96135962 7.07322332,5 6.95968758,5 L1.04031242,5 C0.764170049,5 0.540312424,4.77614237 0.540312424,4.5 C0.540312424,4.38646425 0.5789528,4.276309 0.649878019,4.18765248 L3.6095656,0.488043006 C3.78207037,0.272412038 4.09671656,0.237451351 4.31234752,0.409956125 C4.34117988,0.433022006 4.36736852,0.459210655 4.3904344,0.488043006 Z" id="Triangle" transform="translate(4, 2.5) rotate(180) translate(-4, -2.5)"></path>
+            </g>
+        </g>
+    </g>
+</svg>
