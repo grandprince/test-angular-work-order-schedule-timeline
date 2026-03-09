@@ -1,0 +1,22 @@
+<section class="schedule-shell" aria-label="Work order timeline">
+  <div class="shell-left">
+    <div class="shell-header">Work Center</div>
+
+    <div class="shell-body">
+      @for (wc of workCenters; track wc.docId) {
+        <div
+          class="row"
+          [class.is-hovered]="hoveredWorkCenterId === wc.docId"
+          (mouseenter)="onEnter(wc.docId)"
+          (mouseleave)="onLeave(wc.docId)"
+        >
+          {{ wc.data.name }}
+        </div>
+      }
+    </div>
+  </div>
+
+  <div class="shell-right">
+    <ng-content />
+  </div>
+</section>

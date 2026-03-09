@@ -1,0 +1,58 @@
+<header class="topbar" role="banner">
+  <div class="topbar__inner">
+    <img class="brand-logo" src="assets/brand.png" alt="Naologic" />
+  </div>
+</header>
+
+<main class="page" role="main">
+  <div class="title">Work Orders</div>
+
+  <section class="controls" aria-label="Timeline controls">
+    <span class="label-chip">Timescale</span>
+    <ng-select
+      class="timescale-select"
+      [items]="timescaleOptions"
+      bindLabel="label"
+      [clearable]="false"
+      [searchable]="false"
+      [dropdownPosition]="'auto'"
+      [ngModel]="timescale()"
+      (change)="onTimescaleChange($event)"
+    ></ng-select>
+
+    <button class="today-btn" type="button" (click)="onToday()">Today</button>
+  </section>
+
+  <app-timeline-shell
+    [workCenters]="workCenters()"
+    [hoveredWorkCenterId]="hoveredWorkCenterId"
+    (hoverChange)="onHoverChange($event)"
+  >
+    <app-timeline-grid
+      [workCenters]="workCenters()"
+      [columns]="columns()"
+      [colWidthPx]="colWidthPx()"
+      [todayLeftPx]="todayLeftPx()"
+      [badgeLabel]="badgeLabel()"
+      [badgeLeftPx]="badgeLeftPx()"
+      [positionedOrdersByCenter]="positionedOrdersByCenter()"
+      (emptyClick)="onEmptyClick($event)"
+      (extendLeft)="onExtendLeft()"
+      (extendRight)="onExtendRight()"
+      (edit)="onEdit($event)"
+      (delete)="onDelete($event)"
+    ></app-timeline-grid>
+  </app-timeline-shell>
+
+  @if (drawerDraft) {
+    <app-work-order-drawer
+      [open]="drawerOpen"
+      [mode]="drawerMode"
+      [draft]="drawerDraft"
+      [submitError]="drawerSubmitError"
+      [openerEl]="drawerOpenerEl"
+      (cancel)="closeDrawer()"
+      (submitDraft)="onSubmitDraft($event)"
+    />
+  }
+</main>

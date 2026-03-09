@@ -1,0 +1,221 @@
+.drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0);
+  display: flex;
+  justify-content: flex-end;
+  z-index: 50;
+  transition: background 160ms ease;
+}
+
+.drawer-backdrop--open {
+  background: rgba(15, 23, 42, 0.06);
+}
+
+.drawer {
+  width: var(--drawer-w);
+  height: 100%;
+  background: #fff;
+  border-top-left-radius: var(--radius-12);
+  border-bottom-left-radius: var(--radius-12);
+  box-shadow: -20px 0 60px rgba(47, 48, 89, 0.18);
+  display: flex;
+  flex-direction: column;
+
+  transform: translateX(24px);
+  opacity: 0;
+  transition:
+    transform 180ms ease,
+    opacity 180ms ease;
+}
+
+.drawer--open {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.drawer__top {
+  padding: 18px 22px 14px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.drawer__top-left {
+  display: grid;
+  gap: 6px;
+}
+
+.drawer__title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #2f3059;
+}
+
+.drawer__subtitle {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.drawer__top-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.drawer__divider {
+  height: 1px;
+  background: var(--border);
+}
+
+.drawer__body {
+  padding: 18px 22px;
+  display: grid;
+  gap: 18px;
+}
+
+.field {
+  display: grid;
+  gap: 8px;
+}
+
+.label {
+  font-size: 12px;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.input {
+  height: 42px;
+  border-radius: 8px;
+  border: 1px solid #d6dcef;
+  padding: 0 12px;
+  font-size: 14px;
+  outline: none;
+  background: #fff;
+}
+
+.input:focus {
+  border-color: rgba(62, 64, 219, 0.55);
+  box-shadow: 0 0 0 3px rgba(62, 64, 219, 0.12);
+}
+
+.error {
+  font-size: 12px;
+  color: #b13600;
+  font-weight: 600;
+}
+
+.btn {
+  height: 34px;
+  padding: 0 14px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 700;
+  border: 1px solid transparent;
+}
+
+.btn--ghost {
+  background: #fff;
+  border-color: var(--border);
+  color: #2f3059;
+  cursor: pointer;
+}
+
+.btn--primary {
+  background: var(--primary);
+  color: #fff;
+  cursor: pointer;
+}
+
+:host ::ng-deep .status-select .ng-select-container {
+  height: 42px;
+  min-height: 42px;
+  border-radius: 8px;
+  border: 1px solid #d6dcef;
+  box-shadow: none;
+  padding-left: 8px;
+}
+
+:host ::ng-deep .status-select.ng-select-focused:not(.ng-select-opened) .ng-select-container,
+:host ::ng-deep .status-select.ng-select-opened .ng-select-container {
+  border-color: rgba(62, 64, 219, 0.55);
+  box-shadow: 0 0 0 3px rgba(62, 64, 219, 0.12);
+}
+
+:host ::ng-deep .status-select .ng-value-container {
+  padding: 0;
+}
+
+:host ::ng-deep .status-select .ng-input {
+  padding: 0;
+}
+
+:host ::ng-deep .status-select .ng-arrow-wrapper {
+  width: 34px;
+  padding-right: 10px;
+}
+
+:host ::ng-deep .status-select .ng-arrow {
+  border-color: #687196 transparent transparent;
+  border-width: 5px 5px 0;
+}
+
+/* Dropdown panel */
+:host ::ng-deep .status-select .ng-dropdown-panel {
+  border-radius: 8px;
+  border: 1px solid #e6ebf0;
+  box-shadow: 0 10px 24px rgba(47, 48, 89, 0.12);
+  overflow: hidden;
+  margin-top: 6px;
+}
+
+:host ::ng-deep .status-select .ng-dropdown-panel .ng-dropdown-panel-items .ng-option {
+  padding: 10px 12px;
+  font-size: 14px;
+  color: #2f3059;
+}
+
+:host ::ng-deep .status-select .ng-dropdown-panel .ng-option.ng-option-marked,
+:host ::ng-deep .status-select .ng-dropdown-panel .ng-option.ng-option-selected {
+  background: #f4f6fb;
+}
+
+/* Selected pill */
+.status-pill {
+  height: 24px;
+  padding: 0 10px;
+  border-radius: 7px;
+  font-size: 13px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  line-height: 1;
+}
+
+/* Option text */
+.status-option {
+  font-weight: 600;
+}
+
+/* Pill variants (match timeline status tones) */
+.pill--open {
+  background: #e4fdff;
+  color: #00b0bf;
+}
+
+.pill--in-progress {
+  background: #d6d8ff;
+  color: #3e40db;
+}
+
+.pill--complete {
+  background: #e1ffcc;
+  color: #08a268;
+}
+
+.pill--blocked {
+  background: #fceeb5;
+  color: #b13600;
+}

@@ -1,0 +1,112 @@
+@if (open) {
+  <div class="drawer-backdrop drawer-backdrop--open" (click)="onCancel()">
+    <aside
+      #drawerEl
+      class="drawer drawer--open"
+      data-testid="drawer"
+      (click)="$event.stopPropagation()"
+      (keydown)="onDrawerKeydown($event)"
+    >
+      <header class="drawer__top">
+        <div class="drawer__top-left">
+          <div class="drawer__title">Work Order Details</div>
+          <div class="drawer__subtitle">Specify the dates, name and status for this order</div>
+        </div>
+
+        <div class="drawer__top-actions">
+          <button
+            class="btn btn--ghost"
+            type="button"
+            (click)="onCancel()"
+            data-testid="drawer-cancel"
+          >
+            Cancel
+          </button>
+          <button
+            class="btn btn--primary"
+            type="button"
+            (click)="onSubmit()"
+            data-testid="drawer-submit"
+          >
+            {{ mode === 'create' ? 'Create' : 'Save' }}
+          </button>
+        </div>
+      </header>
+
+      <div class="drawer__divider"></div>
+
+      <form class="drawer__body" [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="field">
+          <div class="label">Work Order Name</div>
+          <input
+            #nameInput
+            class="input"
+            type="text"
+            formControlName="name"
+            placeholder="Enter name"
+            data-testid="drawer-name"
+          />
+          @if (form.controls.name.touched && form.controls.name.invalid) {
+            <div class="error">Name is required.</div>
+          }
+        </div>
+
+        <div class="field">
+          <div class="label">Status</div>
+
+          <ng-select
+            class="status-select"
+            [items]="statusOptions"
+            bindLabel="label"
+            bindValue="value"
+            [clearable]="false"
+            [searchable]="false"
+            formControlName="status"
+          >
+            <!-- Selected value template -->
+            <ng-template ng-label-tmp let-item="item">
+              <span class="status-pill" [ngClass]="item.pillClass">{{ item.label }}</span>
+            </ng-template>
+
+            <!-- Dropdown option template -->
+            <ng-template ng-option-tmp let-item="item">
+              <span class="status-option">{{ item.label }}</span>
+            </ng-template>
+          </ng-select>
+        </div>
+
+        <div class="field">
+          <div class="label">End date</div>
+          <input
+            class="input"
+            formControlName="end"
+            ngbDatepicker
+            #dpEnd="ngbDatepicker"
+            (click)="dpEnd.toggle()"
+            readonly
+          />
+        </div>
+
+        <div class="field">
+          <div class="label">Start date</div>
+          <input
+            class="input"
+            formControlName="start"
+            ngbDatepicker
+            #dpStart="ngbDatepicker"
+            (click)="dpStart.toggle()"
+            readonly
+          />
+        </div>
+
+        @if (form.touched && form.errors?.['dateRange']) {
+          <div class="error">End date must be the same or after start date.</div>
+        }
+
+        @if (submitError) {
+          <div class="error" data-testid="drawer-submit-error">{{ submitError }}</div>
+        }
+      </form>
+    </aside>
+  </div>
+}

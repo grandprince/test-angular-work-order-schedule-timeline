@@ -1,0 +1,59 @@
+:host {
+  display: block;
+  flex: 1 1 auto;
+  min-height: 0; /* critical for nested scroll areas */
+}
+
+.schedule-shell {
+  width: calc(100% - 45px);
+  height: 100%;
+  border: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: var(--left-col-w) 1fr;
+  background: #fff;
+  overflow: hidden; /* prevent whole shell scrolling */
+}
+
+.shell-left {
+  border-right: 1px solid var(--border);
+}
+
+.shell-right {
+  position: relative;
+  overflow: hidden; /* keep scroll only inside grid component */
+}
+
+.shell-left,
+.shell-right {
+  min-height: 0;
+}
+
+.shell-header {
+  height: 32px;
+  padding: 0 31px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--border);
+  line-height: 16px;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.shell-body {
+  display: grid;
+  grid-template-rows: 60px repeat(200, var(--row-h));
+}
+
+.row {
+  padding: 0 31px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--border);
+  line-height: 16px;
+  font-size: 14px;
+  color: var(--text);
+}
+
+.row.is-hovered {
+  background: rgba(250, 251, 253, 1);
+}

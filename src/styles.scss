@@ -1,1 +1,57 @@
-/* You can add global styles to this file, and also import other style files */
+@import '@ng-select/ng-select/themes/default.theme.css';
+
+:root {
+  --font-family: 'Circular-Std', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+  --font-weight: 500;
+
+  --page-bg: #ffffff;
+  --text: rgba(3, 9, 41, 1);
+  --muted: rgba(104, 113, 150, 1);
+
+  --border: rgba(230, 235, 240, 1);
+  --hover-row: rgba(238, 240, 255, 1);
+
+  --primary: #3e40db;
+
+  --left-col-w: 380px;
+  --drawer-w: 591px;
+  --row-h: 48px;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-family);
+  font-weight: var(--font-weight);
+  background: var(--page-bg);
+  color: var(--text);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+button,
+input,
+select {
+  font-family: inherit;
+}
+
+app-root {
+  display: block;
+  height: 100%;
+}
+
+button,
+a,
+[role='button'],
+[role='menuitem'],
+.wo-bar {
+  cursor:
+    url('/assets/pointer.svg') 8 8,
+    pointer;
+}

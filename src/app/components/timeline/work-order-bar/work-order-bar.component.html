@@ -1,0 +1,43 @@
+<div
+  class="wo-bar"
+  [class.is-hovered]="hovered"
+  [attr.data-testid]="'wo-bar-' + wo.docId"
+  [class.status-open]="wo.status === 'open'"
+  [class.status-in-progress]="wo.status === 'in-progress'"
+  [class.status-complete]="wo.status === 'complete'"
+  [class.status-blocked]="wo.status === 'blocked'"
+  [style.left.px]="wo.leftPx"
+  [style.width.px]="wo.widthPx"
+  (mouseenter)="onEnter()"
+  (mouseleave)="onLeave()"
+  (click)="$event.stopPropagation()"
+>
+  <span class="wo-name">{{ wo.name }}</span>
+  <span class="wo-status">
+    {{ wo.status === 'in-progress' ? 'In progress' : (wo.status | titlecase) }}
+  </span>
+
+  <button
+    #menuBtn
+    class="wo-menu-btn"
+    type="button"
+    data-testid="wo-menu-btn"
+    aria-label="Work order actions"
+    [class.is-visible]="hovered"
+    (click)="toggleMenu($event)"
+  >
+    …
+  </button>
+
+  @if (hovered) {
+    <div class="wo-tooltip" role="tooltip">
+      <div class="wo-tooltip__title">{{ wo.name }}</div>
+      <div class="wo-tooltip__meta">
+        <span class="wo-tooltip__pill">
+          {{ wo.status === 'in-progress' ? 'In progress' : (wo.status | titlecase) }}
+        </span>
+        <span class="wo-tooltip__dates">{{ wo.startDateIso }} → {{ wo.endDateIso }}</span>
+      </div>
+    </div>
+  }
+</div>

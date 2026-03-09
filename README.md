@@ -1,59 +1,117 @@
-# Work Order Schedule Timeline
+# Work Order Schedule Timeline (Angular)
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.1.
+Single-page Angular application that visualizes and manages work orders across multiple work centers using an interactive timeline (Day / Week / Month).
 
-## Development server
+---
 
-To start a local development server, run:
+## Requirements Covered
+
+- Timeline grid with **Day / Week / Month** zoom levels
+- Fixed left panel (Work Centers) + horizontally scrollable timeline grid
+- Current time indicator + “Current month/week” badge (depending on view)
+- Work order bars with status styling (Open / In progress / Complete / Blocked)
+- Create / Edit slide-out drawer (Reactive Forms + validation)
+- Actions menu (Edit / Delete)
+- **Overlap detection** for work orders on the same work center (blocks save and shows error)
+- Sample data: **5+ work centers**, **8+ work orders**, all statuses represented
+
+---
+
+## Tech Stack
+
+- **Angular (latest)** — Standalone components, strict TypeScript, SPA layout
+- **SCSS** — Pixel-oriented styling close to Sketch
+- **Reactive Forms** — FormGroup validation for drawer fields
+- **ng-select** — Styled dropdown for Timescale and Status
+- **@ng-bootstrap/ng-bootstrap** — `ngb-datepicker` for start/end date selection
+- **Vitest** (optional/bonus) — unit tests for key logic (if enabled)
+- **Playwright** (optional/bonus) — E2E scenarios (if enabled)
+- **localStorage persistence** (optional/bonus) — keeps work orders on refresh (if enabled)
+
+---
+
+## Setup
+
+### Prerequisites
+
+- **Node.js**: 24+ (tested on Node 24.14.0)
+- **npm**: 11+
+
+### Install
+
+```bash
+npm install
+```
+
+## Start (dev)
 
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+or
 
 ```bash
-ng generate component component-name
+npm start
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Open:
+http://localhost:4200
 
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
+## Build
 
 ```bash
 ng build
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+or
 
 ```bash
-ng test
+npm run build
 ```
 
-## Running end-to-end tests
+## How to Test
 
-For end-to-end (e2e) testing, run:
+### Unit Tests (Vitest)
 
 ```bash
-ng e2e
+npm test
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+Watch mode:
 
-## Additional Resources
+```bash
+npm run test:watch
+```
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+UI mode:
+
+```bash
+npm run test:ui
+```
+
+### E2E Tests (Playwright)
+
+First-time setup (one-time):
+
+```bash
+npx playwright install
+```
+
+Run E2E:
+
+```bash
+npm run e2e
+```
+
+UI mode:
+
+```bash
+npm run e2e:ui
+```
+
+View report:
+
+```bash
+npm run e2e:report
+```

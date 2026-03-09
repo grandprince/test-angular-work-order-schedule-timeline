@@ -1,0 +1,73 @@
+<div
+  #scroll
+  class="timeline-scroll"
+  aria-label="Timeline horizontal scroll"
+  [style.--colWidth.px]="colWidthPx"
+  (scroll)="onScroll()"
+>
+  <div class="timeline-inner" [style.width.px]="timelineWidthPx()">
+    <div class="timeline-header" role="row">
+      @for (col of columns; track col.key) {
+        <div class="timeline-col" role="columnheader">{{ col.label }}</div>
+      }
+
+      @if (badgeLeftPx !== null && badgeLabel) {
+        <div class="current-month-badge" [style.left.px]="badgeLeftPx">
+          {{ badgeLabel }}
+        </div>
+      }
+    </div>
+
+    @if (todayLeftPx !== null) {
+      <div class="today-line" [style.left.px]="todayLeftPx"></div>
+    }
+
+    <div class="timeline-rows" role="rowgroup">
+      @for (wc of workCenters; track wc.docId) {
+        <div
+          class="timeline-row"
+          role="row"
+          [class.is-hovered]="hoveredWorkCenterId === wc.docId"
+          (mouseenter)="onRowEnter(wc.docId)"
+          (mouseleave)="onRowLeave(wc.docId)"
+          (mousemove)="onRowMouseMove(wc.docId, $event)"
+          (click)="onRowClick(wc.docId, $event)"
+          [attr.data-testid]="'timeline-row-' + wc.docId"
+        >
+          <div class="bars-layer">
+            @for (wo of positionedOrdersByCenter[wc.docId] ?? []; track wo.docId) {
+              <app-work-order-bar
+                [wo]="wo"
+                (edit)="edit.emit($event)"
+                (delete)="delete.emit($event)"
+                (openMenu)="openMenuOverlay($event)"
+              />
+            }
+          </div>
+
+          @if (hintVisible && hintWorkCenterId === wc.docId) {
+            <div class="add-hint" [style.left.px]="hintLeftPx" [style.top.px]="hintTopPx">
+              <div class="add-hint__tooltip">Click to add dates</div>
+            </div>
+          }
+        </div>
+      }
+    </div>
+
+    @if (menuOverlay) {
+      <div class="menu-overlay-hit" (click)="closeMenuOverlay()">
+        <div
+          class="menu-overlay"
+          [style.left.px]="menuOverlay.x"
+          [style.top.px]="menuOverlay.y"
+          (click)="$event.stopPropagation()"
+        >
+          <button class="menu-item" type="button" (click)="onOverlayEdit()">Edit</button>
+          <button class="menu-item menu-item--delete" type="button" (click)="onOverlayDelete()">
+            Delete
+          </button>
+        </div>
+      </div>
+    }
+  </div>
+</div>
